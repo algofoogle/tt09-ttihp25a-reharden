@@ -244,10 +244,7 @@ jobs:
       - name: Fetch verilog and build config
         working-directory: hdl/${{ matrix.project }}
         shell: bash
-        run: |
-          # override original config.json with IHP version
-          cp $GITHUB_WORKSPACE/config/config.json src/config.json
-          ./tt/tt_tool.py --create-user-config --ihp
+        run: ./tt/tt_tool.py --create-user-config --ihp
 
       - name: Make GDS with OpenLane
         working-directory: hdl/${{ matrix.project }}
@@ -484,10 +481,7 @@ jobs:
 #      - name: Fetch verilog and build config
 #        working-directory: wokwi/${{ matrix.project }}
 #        shell: bash
-#        run: |
-#          # override original config.json with IHP version
-#          cp $GITHUB_WORKSPACE/config/config.json src/config.json
-#          ./tt/tt_tool.py --create-user-config --ihp
+#        run: ./tt/tt_tool.py --create-user-config --ihp
 #
 #      - name: Make GDS with OpenLane
 #        working-directory: wokwi/${{ matrix.project }}
