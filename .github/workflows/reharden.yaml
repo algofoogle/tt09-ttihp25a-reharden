@@ -1,0 +1,526 @@
+name: reharden
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      openlane_tag:
+        description: 'Openlane tag'
+        required: false
+        default: '2.1.5'
+
+jobs:
+  reharden-hdl:
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          - tt_um_09eksdee
+          - tt_um_2048_vga_game
+          - tt_um_4x4_array_multiplier_NuKoP
+          - tt_um_4x4multiplier
+          - tt_um_a_0_array_multiplier
+          - tt_um_a1k0n_nyancat
+          - tt_um_a3_array_multiplier
+          - tt_um_a_4_array_multiplier
+          - tt_um_A_6_array_multiplier
+          - tt_um_adder_accumulator_sathworld
+          - tt_um_alf19185_ALU
+          - tt_um_algofoogle_tt09_ring_osc
+          - tt_um_algofoogle_tt09_ring_osc2
+          - tt_um_algofoogle_tt09_ring_osc3
+          - tt_um_alif
+          - tt_um_anas_7193
+          - tt_um_anders_tt_6502
+          - tt_um_anislam
+          - tt_um_arandomdev_fir_engine_top
+          - tt_um_arrayMultFajrSahana
+          - tt_um_array_mult_joe_leighthardt
+          - tt_um_array_mult_structural
+          - tt_um_array_mult_structural_GnahsLliw
+          - tt_um_array_mult_structural_sarahherrera
+          - tt_um_array_mult_structural_sectionD_group3
+          - tt_um_array_secD7
+          - tt_um_arry_mult_structural
+          - tt_um_asheldon44_dsm_decimation_filter
+          - tt_um_b_0_array_multiplier
+          - tt_um_b_10_array_multiplier
+          - tt_um_b_12_array_multiplier
+          - tt_um_B_14_array_multiplier
+          - tt_um_b_2_array_multiplier
+          - tt_um_b_6_array_multiplier
+          - tt_um_b_8_array_multiplier
+          - tt_um_c13_array_mult
+          - tt_um_C_1_4bit_multiplier
+          - tt_um_c1_array_mult_structural
+          - tt_um_c_2_array_mult
+          - tt_um_c_4_4b_mult
+          - tt_um_C6_array_multiplier
+          - tt_um_c7_array_mult
+          - tt_um_C8_array_mult
+          - tt_um_CarrySelect8bit
+          - tt_um_carryskip_adder8
+          - tt_um_carryskip_adder9
+          - tt_um_ccu_goatgate
+          - tt_um_cdc_test
+          - tt_um_cellular_alchemist
+          - tt_um_chip4lyfe
+          - tt_um_chip_rom
+          - tt_um_CLA8
+          - tt_um_claudiotalarico_counter
+          - tt_um_Coline3003_spect_top
+          - tt_um_Coline3003_top
+          - tt_um_control_block
+          - tt_um_couchand_cora16
+          - tt_um_d_4_array_multiplier
+          - tt_um_db_MAC
+          - tt_um_delta_liafn
+          - tt_um_devinatkin_basys3_uart
+          - tt_um_dff_mem
+          - tt_um_digital_clock_example
+          - tt_um_dlmiles_dffram32x8_2r1w
+          - tt_um_dog_BILBO
+          - tt_um_ece298a_8_bit_cpu_top
+          - tt_um_ericsmi_mips
+          - tt_um_Esteban_Oman_Mendoza_maze_2024_top
+          - tt_um_factory_test
+          - tt_um_flyingfish800
+          - tt_um_four_bit_multiplier_nasan016_npham2003
+          - tt_um_frequency_counter
+          - tt_um_gfcwfzkm_scope_bfh_mht1_3
+          - tt_um_gmejiamtz
+          - tt_um_histogramming
+          - tt_um_htfab_caterpillar
+          - tt_um_hybrid_adder
+          - tt_um_I2C
+          - tt_um_idann
+          - tt_um_instrumented_ring_oscillator
+          - tt_um_jamesrosssharp_1bitam
+          - tt_um_jamesrosssharp_tiny1bitam
+          - tt_um_JesusMinguillon_freqSweep
+          - tt_um_juarez_jimenez
+          - tt_um_kailinsley
+          - tt_um_kashmaster_carryskip
+          - tt_um_kev_ma_matmult222
+          - tt_um_koggestone_adder8
+          - tt_um_KoushikCSN_RISCV
+          - tt_um__kwr_lfsr__top
+          - tt_um_LabA_Group11
+          - tt_um_led_cipher
+          - tt_um_led_matrix_ayla_lin
+          - tt_um_levenshtein
+          - tt_um_LFSR_Encrypt
+          - tt_um_lfsr_stevej
+          - tt_um_liaf
+          - tt_um_lif1
+          - tt_um_lif_clarencechan28
+          - tt_um_lifn
+          - tt_um_lif_network_MR
+          - tt_um_lif_sfiguerr
+          - tt_um_lif_tk
+          - tt_um_lif_ZB
+          - tt_um_lrc_stevej
+          - tt_um_lsnn_hschweig
+          - tt_um_m4rthaswur1d
+          - tt_um_matrix_mult
+          - tt_um_MichaelBell_hd_8b10b
+          - tt_um_MichaelBell_rle_vga
+          - tt_um_michaelmcculloch_alu
+          - tt_um_mikegoelzer_7segmentbyte
+          - tt_um_mroblesh
+          - tt_um_multiplier
+          - tt_um_murmann_group
+          - tt_um_my_elevator
+          - tt_um_Nishanth_RISCV
+          - tt_um_nomuwill
+          - tt_um_perceptron_mtchun
+          - tt_um_pid_controller
+          - tt_um_prefix8
+          - tt_um_program_counter_top_level
+          - tt_um_project
+          - tt_um_purdue_socet_uart
+          - tt_um_pwm_top
+          - tt_um_Rapoport
+          - tt_um_rebeccargb_colorbars
+          - tt_um_rebeccargb_hardware_utf8
+          - tt_um_rebeccargb_intercal_alu
+          - tt_um_rebeccargb_styler
+          - tt_um_rebeccargb_tt09ball_screensaver
+          - tt_um_rebeccargb_universal_decoder
+          - tt_um_rebeccargb_vga_pride
+          - tt_um_rebeccargb_vga_timing_experiments
+          - tt_um_rejunity_ay8913
+          - tt_um_rejunity_decoder
+          - tt_um_rejunity_e2m0_x_i8_matmul
+          - tt_um_rejunity_sn76489
+          - tt_um_rejunity_vga_logo
+          - tt_um_rejunity_vga_test01
+          - tt_um_rejunity_z80
+          - tt_um_riscv_mini
+          - tt_um_ronikant_jeremykam_tinyregisters
+          - tt_um_rtfb_collatz
+          - tt_um_samkho_two_channel_square_wave_generator
+          - tt_um_SarpHS_array_mult
+          - tt_um_schoeberl_test
+          - tt_um_sebastienparadis_hamming_top
+          - tt_um_secA_11_nyancar_alanz23
+          - tt_um_secA_group5_array_multiplier
+          - tt_um_secB_15_array_multiplier
+          - tt_um_secd_8_array_mult
+          - tt_um_section_d_group_fifteen_array_mult_structural
+          - tt_um_senolgulgonul
+          - tt_um_shifter
+          - tt_um_snn_with_delays_paolaunisa
+          - tt_um_stochastic_integrator_tt9_CL123abc
+          - tt_um_systolicLif
+          - tt_um_tinysynth
+          - tt_um_tiny_ternary_tapeout
+          - tt_um_tiny_ternary_tapeout_csa
+          - tt_um_tobimckellar_top
+          - tt_um_toivoh_demo
+          - tt_um_toivoh_pio_ram_emu_example
+          - tt_um_tommythorn_cgates
+          - tt_um_tommythorn_workshop
+          - tt_um_tt09_array_multiplier
+          - tt_um_two_lif_stdp
+          - tt_um_uart_mvm
+          - tt_um_uart_mvm_sys
+          - tt_um_udxs
+          - tt_um_underserved
+          - tt_um_urish_giant_ringosc
+          - tt_um_urish_sic1
+          - tt_um_urish_simon
+          - tt_um_VanceWiberg_top
+          - tt_um_vga_clock
+          - tt_um_wallento_4bit_toycpu
+          - tt_um_warp
+          - tt_um_wokwi_411379488132926465
+          - tt_um_wokwi_413386991502909441
+          - tt_um_wokwi_413387065339458561
+          - tt_um_wokwi_414120248222232577
+          - tt_um_z2a_rgb_mixer
+          - tt_um_znah_vga_ca
+
+    runs-on: ubuntu-24.04
+    env:
+      OPENLANE_IMAGE_OVERRIDE: htms/openlane2:ihp-v3.0.0.dev17
+      PDK_ROOT: ${{ github.workspace }}/pdk
+      PDK: ihp-sg13g2
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Checkout tt-support-tools repo
+        uses: actions/checkout@v4
+        with:
+          repository: TinyTapeout/tt-support-tools
+          path: hdl/${{ matrix.project }}/tt
+          ref: ttihp25a
+
+      - name: Checkout IHP PDK repo
+        uses: actions/checkout@v4
+        with:
+          repository: TinyTapeout/IHP-Open-PDK
+          ref: openlane
+          path: pdk
+
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        working-directory: hdl/${{ matrix.project }}
+        run: |
+          pip install -r tt/requirements.txt
+
+      - name: Install ghdl
+        uses: awalsh128/cache-apt-pkgs-action@v1.4.3
+        with:
+          packages: ghdl-llvm
+          version: ttihp25a-reharden
+
+      - name: Install OpenLane (IHP branch)
+        shell: bash
+        run: |
+          pip install https://github.com/TinyTapeout/libparse-python/releases/download/0.3.1-dev1/libparse-0.3.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+          pip install https://github.com/TinyTapeout/openlane2/releases/download/ihp-v3.0.0.dev17/openlane-3.0.0.dev17-py3-none-any.whl
+
+      - name: Fetch verilog and build config
+        working-directory: hdl/${{ matrix.project }}
+        shell: bash
+        run: |
+          # override original config.json with IHP version
+          cp $GITHUB_WORKSPACE/config/config.json src/config.json
+          ./tt/tt_tool.py --create-user-config --ihp
+
+      - name: Make GDS with OpenLane
+        working-directory: hdl/${{ matrix.project }}
+        run: |
+          git init
+          # tt_tool requires a remote to be set, and some commit to be present
+          git remote add origin https://github.com/TinyTapeout/dummy
+          git config user.email "bot@github.com"
+          git config user.name "Tiny Tapeout Bot"
+          git commit --allow-empty -m "Dummy commit"
+
+          python tt/tt_tool.py --create-user-config --harden --ihp
+
+          # Fail if the final GDS file doesn't exist
+          if [ ! -f "runs/wokwi/final/gds/${{ matrix.project }}.gds" ]; then
+            exit 1
+          fi
+
+          # Fail is error.log isn't empty
+          if [ -s "runs/wokwi/error.log" ]; then
+            exit 1
+          fi
+
+      - name: Publish build logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: GDS_${{ matrix.project }}
+          path: |
+            hdl/${{ matrix.project }}/runs/*
+
+  reharden-wokwi:
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          - tt_um_wokwi_411783629732984833
+          - tt_um_wokwi_412367067047460865
+          - tt_um_wokwi_412635532198550529
+          - tt_um_wokwi_413385294512575489
+          - tt_um_wokwi_413386973689694209
+          - tt_um_wokwi_413386988538584065
+          - tt_um_wokwi_413387009513254913
+          - tt_um_wokwi_413387014781302785
+          - tt_um_wokwi_413387015959903233
+          - tt_um_wokwi_413387032609197057
+          - tt_um_wokwi_413387064715554817
+          - tt_um_wokwi_413387065963362305
+          - tt_um_wokwi_413387076188030977
+          - tt_um_wokwi_413387093939376129
+          - tt_um_wokwi_413387120998931457
+          - tt_um_wokwi_413387122850717697
+          - tt_um_wokwi_413387152803294209
+          - tt_um_wokwi_413387186248679425
+          - tt_um_wokwi_413387190167208961
+          - tt_um_wokwi_413387214966034433
+          - tt_um_wokwi_413387224567846913
+          - tt_um_wokwi_413387348132056065
+          - tt_um_wokwi_413387352465821697
+          - tt_um_wokwi_413387462882977793
+          - tt_um_wokwi_413387481972305921
+          - tt_um_wokwi_413391266378724353
+          - tt_um_wokwi_413407859783959553
+          - tt_um_wokwi_413471588783557633
+          - tt_um_wokwi_413686101237123073
+          - tt_um_wokwi_413849515516143617
+          - tt_um_wokwi_413871526879619073
+          - tt_um_wokwi_413872016164217857
+          - tt_um_wokwi_413879612498222081
+          - tt_um_wokwi_413883347321632769
+          - tt_um_wokwi_413916532008126465
+          - tt_um_wokwi_413917903548951553
+          - tt_um_wokwi_413918022277139457
+          - tt_um_wokwi_413918243645213697
+          - tt_um_wokwi_413918244906651649
+          - tt_um_wokwi_413918279810604033
+          - tt_um_wokwi_413919428470231041
+          - tt_um_wokwi_413919442353385473
+          - tt_um_wokwi_413919454053401601
+          - tt_um_wokwi_413919454138338305
+          - tt_um_wokwi_413919458626244609
+          - tt_um_wokwi_413919465666386945
+          - tt_um_wokwi_413919484652961793
+          - tt_um_wokwi_413919492911554561
+          - tt_um_wokwi_413919500942601217
+          - tt_um_wokwi_413919502227108865
+          - tt_um_wokwi_413919507057902593
+          - tt_um_wokwi_413919522908184577
+          - tt_um_wokwi_413919524873217025
+          - tt_um_wokwi_413919531169918977
+          - tt_um_wokwi_413919540668975105
+          - tt_um_wokwi_413919543420439553
+          - tt_um_wokwi_413919565287453697
+          - tt_um_wokwi_413919625901452289
+          - tt_um_wokwi_413919666547418113
+          - tt_um_wokwi_413919675346023425
+          - tt_um_wokwi_413919752282163201
+          - tt_um_wokwi_413919767806333953
+          - tt_um_wokwi_413919775044656129
+          - tt_um_wokwi_413919777312727041
+          - tt_um_wokwi_413919794360480769
+          - tt_um_wokwi_413919833599252481
+          - tt_um_wokwi_413919847886104577
+          - tt_um_wokwi_413919889872144385
+          - tt_um_wokwi_413919927206703105
+          - tt_um_wokwi_413919970097662977
+          - tt_um_wokwi_413919972072132609
+          - tt_um_wokwi_413920033033205761
+          - tt_um_wokwi_413920089540972545
+          - tt_um_wokwi_413920096493033473
+          - tt_um_wokwi_413920340558577665
+          - tt_um_wokwi_413920370058172417
+          - tt_um_wokwi_413920442846133249
+          - tt_um_wokwi_413920489444856833
+          - tt_um_wokwi_413920640800531457
+          - tt_um_wokwi_413920825278643201
+          - tt_um_wokwi_413921288682183681
+          - tt_um_wokwi_413921836641882113
+          - tt_um_wokwi_413921849611724801
+          - tt_um_wokwi_413923150973445121
+          - tt_um_wokwi_413923188546028545
+          - tt_um_wokwi_413923202390383617
+          - tt_um_wokwi_413923245817165825
+          - tt_um_wokwi_413923260134423553
+          - tt_um_wokwi_413923521595851777
+          - tt_um_wokwi_413923639862662145
+          - tt_um_wokwi_413923702485727233
+          - tt_um_wokwi_413925554587918337
+          - tt_um_wokwi_413929752291913729
+          - tt_um_wokwi_413960876763056129
+          - tt_um_wokwi_414041465275103233
+          - tt_um_wokwi_414107691971107841
+          - tt_um_wokwi_414117854728812545
+          - tt_um_wokwi_414117926152578049
+          - tt_um_wokwi_414118269335820289
+          - tt_um_wokwi_414118423095874561
+          - tt_um_wokwi_414120157271867393
+          - tt_um_wokwi_414120201832165377
+          - tt_um_wokwi_414120202583995393
+          - tt_um_wokwi_414120207283716097
+          - tt_um_wokwi_414120239772801025
+          - tt_um_wokwi_414120263584922625
+          - tt_um_wokwi_414120295047458817
+          - tt_um_wokwi_414120299211357185
+          - tt_um_wokwi_414120303651028993
+          - tt_um_wokwi_414120320168203265
+          - tt_um_wokwi_414120349028170753
+          - tt_um_wokwi_414120357164073985
+          - tt_um_wokwi_414120368966850561
+          - tt_um_wokwi_414120372939908097
+          - tt_um_wokwi_414120378768943105
+          - tt_um_wokwi_414120379026893825
+          - tt_um_wokwi_414120388391730177
+          - tt_um_wokwi_414120391864616961
+          - tt_um_wokwi_414120404427608065
+          - tt_um_wokwi_414120407679244289
+          - tt_um_wokwi_414120414884012033
+          - tt_um_wokwi_414120415300298753
+          - tt_um_wokwi_414120432405727233
+          - tt_um_wokwi_414120435095328769
+          - tt_um_wokwi_414120435997105153
+          - tt_um_wokwi_414120458938907649
+          - tt_um_wokwi_414120459831246849
+          - tt_um_wokwi_414120472316644353
+          - tt_um_wokwi_414120492890759169
+          - tt_um_wokwi_414120500233937921
+          - tt_um_wokwi_414120509472942081
+          - tt_um_wokwi_414120513895838721
+          - tt_um_wokwi_414120518107969537
+          - tt_um_wokwi_414120526876163073
+          - tt_um_wokwi_414120569974735873
+          - tt_um_wokwi_414120583702696961
+          - tt_um_wokwi_414120591467404289
+          - tt_um_wokwi_414120800422397953
+          - tt_um_wokwi_414120868401584129
+          - tt_um_wokwi_414121281003682817
+          - tt_um_wokwi_414121421011660801
+          - tt_um_wokwi_414121442515858433
+          - tt_um_wokwi_414121532514097153
+          - tt_um_wokwi_414121555407659009
+          - tt_um_wokwi_414121715329142785
+          - tt_um_wokwi_414122607025630209
+          - tt_um_wokwi_414123795172381697
+          - tt_um_wokwi_414124428088683521
+          - tt_um_wokwi_414124471705253889
+          - tt_um_wokwi_414124597390729217
+          - tt_um_wokwi_414124843472659457
+          - tt_um_wokwi_414124872671308801
+          - tt_um_wokwi_414125058137148417
+          - tt_um_wokwi_414125777368065025
+          - tt_um_wokwi_414126546375915521
+          - tt_um_wokwi_414127944900611073
+          - tt_um_wokwi_414174625969437697
+
+    runs-on: ubuntu-24.04
+    env:
+      OPENLANE_IMAGE_OVERRIDE: htms/openlane2:ihp-v3.0.0.dev17
+      PDK_ROOT: ${{ github.workspace }}/pdk
+      PDK: ihp-sg13g2
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Checkout tt-support-tools repo
+        uses: actions/checkout@v4
+        with:
+          repository: TinyTapeout/tt-support-tools
+          path: wokwi/${{ matrix.project }}/tt
+          ref: ttihp25a
+
+      - name: Checkout IHP PDK repo
+        uses: actions/checkout@v4
+        with:
+          repository: TinyTapeout/IHP-Open-PDK
+          ref: openlane
+          path: pdk
+
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        working-directory: wokwi/${{ matrix.project }}
+        run: |
+          pip install -r tt/requirements.txt
+
+      - name: Install OpenLane (IHP branch)
+        shell: bash
+        run: |
+          pip install https://github.com/TinyTapeout/libparse-python/releases/download/0.3.1-dev1/libparse-0.3.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+          pip install https://github.com/TinyTapeout/openlane2/releases/download/ihp-v3.0.0.dev17/openlane-3.0.0.dev17-py3-none-any.whl
+
+      - name: Fetch verilog and build config
+        working-directory: wokwi/${{ matrix.project }}
+        shell: bash
+        run: |
+          # override original config.json with IHP version
+          cp $GITHUB_WORKSPACE/config/config.json src/config.json
+          ./tt/tt_tool.py --create-user-config --ihp
+
+      - name: Make GDS with OpenLane
+        working-directory: wokwi/${{ matrix.project }}
+        run: |
+          git init
+          # tt_tool requires a remote to be set, and some commit to be present
+          git remote add origin https://github.com/TinyTapeout/dummy
+          git config user.email "bot@github.com"
+          git config user.name "Tiny Tapeout Bot"
+          git commit --allow-empty -m "Dummy commit"
+
+          python tt/tt_tool.py --create-user-config --harden --ihp
+
+          # Fail if the final GDS file doesn't exist
+          if [ ! -f "runs/wokwi/final/gds/${{ matrix.project }}.gds" ]; then
+            exit 1
+          fi
+
+          # Fail is error.log isn't empty
+          if [ -s "runs/wokwi/error.log" ]; then
+            exit 1
+          fi
+
+      - name: Publish build logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: GDS_${{ matrix.project }}
+          path: |
+            wokwi/${{ matrix.project }}/runs/*
+
