@@ -1,0 +1,60 @@
+# Tiny Tapeout project information
+project:
+  title:        "SPI Logic Analyzer with Charlieplexed Display"      # Project title
+  author:       "ParallelLogic-"      # Your name
+  discord:      "ParallelLogic"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "Displays contents of register map on charlieplexed display.  Generates waveforms for PWM, UART, WS2812 in response to trigger."      # One line description of what your project does
+  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     10000000       # Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "2x2"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_wokwi_413386991502909441" #"tt_um_parallellogic_top"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  source_files:
+    - "project.v"
+    - "spi_slave.v"
+    - "charlie.v"
+    - "lfsr_counter.v"
+    - "priority_write.v"
+    - "signal_generator.v"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: "CS"
+  ui[1]: "SCLK"
+  ui[2]: "MOSI"
+  ui[3]: "TRIGGER"
+  ui[4]: "ASIC_IN_0"
+  ui[5]: "ASIC_IN_1"
+  ui[6]: "ASIC_IN_2"
+  ui[7]: "ASIC_IN_3"
+
+  # Outputs
+  uo[0]: "ASIC_OUT_0"
+  uo[1]: "ASIC_OUT_1"
+  uo[2]: "ASIC_OUT_2"
+  uo[3]: "ASIC_OUT_3"
+  uo[4]: "ASIC_OUT_4"
+  uo[5]: "ASIC_OUT_5"
+  uo[6]: "ASIC_OUT_6"
+  uo[7]: "MISO"
+
+  # Bidirectional pins
+  uio[0]: "MAT0"
+  uio[1]: "MAT1"
+  uio[2]: "MAT2"
+  uio[3]: "MAT3"
+  uio[4]: "MAT4"
+  uio[5]: "MAT5"
+  uio[6]: "MAT6"
+  uio[7]: "MAT7"
+
+# Do not change!
+yaml_version: 6
