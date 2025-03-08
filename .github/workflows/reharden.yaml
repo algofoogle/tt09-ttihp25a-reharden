@@ -165,7 +165,7 @@ jobs:
           - tt_um_section_d_group_fifteen_array_mult_structural
           - tt_um_senolgulgonul
           - tt_um_shifter
-          #- tt_um_snn_with_delays_paolaunisa
+          - tt_um_snn_with_delays_paolaunisa
           - tt_um_stochastic_integrator_tt9_CL123abc
           - tt_um_systolicLif
           - tt_um_tinysynth
