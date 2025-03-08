@@ -1,0 +1,38 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2024 Anders <anders-code@users.noreply.github.com>
+
+# editor backups
+*~
+*.swp
+
+# ignore hidden files/dirs (.project, .settings, etc.)
+# except don't ignore .gitmodules/.gitignore etc.
+.*
+!.git*
+
+# waveforms
+*.vcd
+*.fst
+*.wdb
+
+# vivado stuff
+*.log
+*.jou
+*.str
+xsim.dir/
+project*/
+
+# cmake outputs
+build/
+a.out
+
+# eqy outputs
+/formal/checkcpu/
+/formal/gold/
+/formal/gate/
+
+# gate-level netlist and pdk models
+tt_um_anders_tt_6502.*nl.v
+sky130_fd_sc_hd.v
+primitives.v
+*.sdf
