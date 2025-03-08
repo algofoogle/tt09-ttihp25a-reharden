@@ -80,23 +80,37 @@ module dff_cell (
 
 endmodule
 
+(* blackbox *)
+module sg13g2_sdfbbp_1 (
+    output wire Q,
+    output wire Q_N,
+    input wire D,
+    input wire SCD,
+    input wire SCE,
+    input wire RESET_B,
+    input wire SET_B,
+    input wire CLK
+    );
+endmodule
+
 module dffsr_cell (
     input wire clk,
     input wire d,
     input wire s,
     input wire r,
-    output reg q,
+    output wire q,
     output wire notq
     );
 
-    assign notq = !q;
+    sg13g2_sdfbbp_1 dffsr (
+        .D (d),
+        .SCD (0),
+        .SCE (0),
+        .RESET_B (!r),
+        .SET_B (!s),
+        .CLK (clk),
+        .Q (q),
+        .Q_N (notq)
+    );
 
-    always @(posedge clk or posedge s or posedge r) begin
-        if (r)
-            q <= 0;
-        else if (s)
-            q <= 1;
-        else
-            q <= d;
-    end
 endmodule
