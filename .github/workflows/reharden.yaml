@@ -11,7 +11,7 @@ jobs:
       matrix:
         project:
           #- tt_um_09eksdee
-          - tt_um_2048_vga_game
+          #- tt_um_2048_vga_game
           #- tt_um_4x4_array_multiplier_NuKoP
           #- tt_um_4x4multiplier
           #- tt_um_a_0_array_multiplier
@@ -63,7 +63,7 @@ jobs:
           #- tt_um_chip_rom
           #- tt_um_CLA8
           #- tt_um_claudiotalarico_counter
-          - tt_um_Coline3003_spect_top
+          #- tt_um_Coline3003_spect_top
           #- tt_um_Coline3003_top
           #- tt_um_control_block
           #- tt_um_couchand_cora16
@@ -90,7 +90,7 @@ jobs:
           #- tt_um_I2C
           #- tt_um_idann
           #- tt_um_instrumented_ring_oscillator
-          - tt_um_jamesrosssharp_1bitam
+          #- tt_um_jamesrosssharp_1bitam
           - tt_um_jamesrosssharp_tiny1bitam
           #- tt_um_JesusMinguillon_freqSweep
           #- tt_um_juarez_jimenez
@@ -150,7 +150,7 @@ jobs:
           - tt_um_rejunity_sn76489
           #- tt_um_rejunity_vga_logo
           - tt_um_rejunity_vga_test01
-          - tt_um_rejunity_z80
+          #- tt_um_rejunity_z80
           #- tt_um_riscv_mini
           #- tt_um_ronikant_jeremykam_tinyregisters
           #- tt_um_rtfb_collatz
@@ -165,7 +165,7 @@ jobs:
           #- tt_um_section_d_group_fifteen_array_mult_structural
           #- tt_um_senolgulgonul
           #- tt_um_shifter
-          - tt_um_snn_with_delays_paolaunisa
+          #- tt_um_snn_with_delays_paolaunisa
           #- tt_um_stochastic_integrator_tt9_CL123abc
           #- tt_um_systolicLif
           #- tt_um_tinysynth
@@ -190,7 +190,7 @@ jobs:
           #- tt_um_wallento_4bit_toycpu
           - tt_um_warp
           #- tt_um_wokwi_411379488132926465
-          - tt_um_wokwi_413386991502909441
+          #- tt_um_wokwi_413386991502909441
           #- tt_um_wokwi_413387065339458561
           #- tt_um_wokwi_414120248222232577
           #- tt_um_z2a_rgb_mixer
