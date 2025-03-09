@@ -269,7 +269,7 @@ jobs:
           fi
 
       - name: Publish build logs
-        if: failure()
+        #if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: GDS_${{ matrix.project }}
@@ -506,7 +506,7 @@ jobs:
           fi
 
       - name: Publish build logs
-        if: failure()
+        #if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: GDS_${{ matrix.project }}
