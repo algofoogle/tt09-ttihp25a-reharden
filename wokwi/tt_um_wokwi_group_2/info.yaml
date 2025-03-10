@@ -1,0 +1,71 @@
+# Tiny Tapeout project information (Wokwi project)
+project:
+  title:        "Wokwi Group #2"     # Project title
+  author:       "Tiny Tapeout"       # Your name
+  discord:      ""                   # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "Combined project to save space for ttihp25a"   # One line description of what your project does
+  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     0         # Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_wokwi_group_2"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  source_files:
+    - "mux.v"
+    - "cells.v"
+    - "tt_um_wokwi_413387348132056065/wokwi/tt_um_wokwi_413387348132056065.v"
+    - "tt_um_wokwi_413387462882977793/wokwi/tt_um_wokwi_413387462882977793.v"
+    - "tt_um_wokwi_413872016164217857/wokwi/tt_um_wokwi_413872016164217857.v"
+    - "tt_um_wokwi_413919492911554561/wokwi/tt_um_wokwi_413919492911554561.v"
+    - "tt_um_wokwi_413919666547418113/wokwi/tt_um_wokwi_413919666547418113.v"
+    - "tt_um_wokwi_413920340558577665/wokwi/tt_um_wokwi_413920340558577665.v"
+    - "tt_um_wokwi_413920640800531457/wokwi/tt_um_wokwi_413920640800531457.v"
+    - "tt_um_wokwi_414118269335820289/wokwi/tt_um_wokwi_414118269335820289.v"
+    - "tt_um_wokwi_414120349028170753/wokwi/tt_um_wokwi_414120349028170753.v"
+    - "tt_um_wokwi_414120368966850561/wokwi/tt_um_wokwi_414120368966850561.v"
+    - "tt_um_wokwi_414120435997105153/wokwi/tt_um_wokwi_414120435997105153.v"
+    - "tt_um_wokwi_414120472316644353/wokwi/tt_um_wokwi_414120472316644353.v"
+    - "tt_um_wokwi_414120509472942081/wokwi/tt_um_wokwi_414120509472942081.v"
+    - "tt_um_wokwi_414120513895838721/wokwi/tt_um_wokwi_414120513895838721.v"
+    - "tt_um_wokwi_414122607025630209/wokwi/tt_um_wokwi_414122607025630209.v"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: "in0"
+  ui[1]: "in1"
+  ui[2]: "in2"
+  ui[3]: "in3"
+  ui[4]: "in4"
+  ui[5]: "in5"
+  ui[6]: "in6"
+  ui[7]: "in7"
+
+  # Outputs
+  uo[0]: "out0"
+  uo[1]: "out1"
+  uo[2]: "out2"
+  uo[3]: "out3"
+  uo[4]: "out4"
+  uo[5]: "out5"
+  uo[6]: "out6"
+  uo[7]: "out7"
+
+  # Bidirectional pins
+  uio[0]: "sel0"
+  uio[1]: "sel1"
+  uio[2]: "sel2"
+  uio[3]: "sel3"
+  uio[4]: ""
+  uio[5]: ""
+  uio[6]: ""
+  uio[7]: ""
+
+# Do not change!
+yaml_version: 6
