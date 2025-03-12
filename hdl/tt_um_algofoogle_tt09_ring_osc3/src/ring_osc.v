@@ -49,6 +49,7 @@ module inv_chain #(
 endmodule
 
 module tapped_ring (
+    input wire ena,
     input [2:0] tap,
     output y
 );
@@ -70,5 +71,5 @@ module tapped_ring (
                 tap == 5 ?  b101:
                 tap == 6 ?  b301:
                 /*tap==7*/ b1001;
-    assign b0 = y;
+    assign b0 = y & ena;
 endmodule
