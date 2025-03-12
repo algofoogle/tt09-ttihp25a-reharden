@@ -318,21 +318,21 @@ jobs:
       matrix:
         project:
           - tt_um_wokwi_411783629732984833
-          - tt_um_wokwi_412635532198550529
-          - tt_um_wokwi_413385294512575489
-          - tt_um_wokwi_413387014781302785
-          - tt_um_wokwi_413387093939376129
-          - tt_um_wokwi_413387190167208961
+          # - tt_um_wokwi_412635532198550529
+          # - tt_um_wokwi_413385294512575489
+          # - tt_um_wokwi_413387014781302785
+          # - tt_um_wokwi_413387093939376129
+          # - tt_um_wokwi_413387190167208961
           - tt_um_wokwi_group_1
           - tt_um_wokwi_group_2
-          - tt_um_wokwi_group_3
-          - tt_um_wokwi_group_4
-          - tt_um_wokwi_group_5
-          - tt_um_wokwi_group_6
-          - tt_um_wokwi_group_7
-          - tt_um_wokwi_group_8
-          - tt_um_wokwi_group_9
-          - tt_um_wokwi_group_10
+          # - tt_um_wokwi_group_3
+          # - tt_um_wokwi_group_4
+          # - tt_um_wokwi_group_5
+          # - tt_um_wokwi_group_6
+          # - tt_um_wokwi_group_7
+          # - tt_um_wokwi_group_8
+          # - tt_um_wokwi_group_9
+          # - tt_um_wokwi_group_10
 
     runs-on: ubuntu-24.04
     env:
